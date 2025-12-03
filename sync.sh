@@ -7,8 +7,7 @@ echo "🔄 Синхронизация OAZIS Bot..."
 cat > /opt/oazis/PROJECT.md << 'HEADER'
 # OAZIS Bot — Паспорт проекта
 
-## Суть
-Telegram-бот агрегатор курортной недвижимости. Помогает инвесторам выбрать апартаменты, рассчитать доходность, оформить бронь.
+> ⚠️ **ВАЖНО:** Сначала прочитай [KNOWLEDGE.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/KNOWLEDGE.md) — там вся база знаний проекта!
 
 ## Сервер
 - IP: 72.56.64.91
@@ -25,24 +24,7 @@ echo "" >> /opt/oazis/PROJECT.md
 cat >> /opt/oazis/PROJECT.md << 'MIDDLE'
 ---
 
-## Стек
-- Python 3 + FastAPI
-- Telegram Bot API (webhook через Cloudflare)  
-- OpenAI API (AI-консультант)
-- JSON-конфиги для данных объектов
-
-## Активные объекты
-- ✅ RIZALTA (Алтай)
-- ✅ Мойнако резорт (Евпатория)
-- ⏳ Николай I (Анапа) — в работе
-
-## TODO
-См. [TODO.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/TODO.md)
-
-## Математическая модель
-См. [docs/FINANCE_MODEL.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/docs/FINANCE_MODEL.md)
-
-## Все файлы проекта (raw-ссылки для Claude)
+## Все файлы проекта (raw-ссылки)
 MIDDLE
 
 # Список файлов
@@ -50,10 +32,6 @@ find /opt/oazis \( -name "*.py" -o -name "*.json" -o -name "*.md" -o -name "*.tx
     REL_PATH=${f#/opt/oazis/}
     echo "- [$REL_PATH](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/$REL_PATH)" >> /opt/oazis/PROJECT.md
 done
-
-echo "" >> /opt/oazis/PROJECT.md
-echo "## Контакты" >> /opt/oazis/PROJECT.md
-echo "Разработка: Claude + Сергей" >> /opt/oazis/PROJECT.md
 
 # Git
 git add .

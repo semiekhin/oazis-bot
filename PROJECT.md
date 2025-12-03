@@ -1,7 +1,6 @@
 # OAZIS Bot — Паспорт проекта
 
-## Суть
-Telegram-бот агрегатор курортной недвижимости. Помогает инвесторам выбрать апартаменты, рассчитать доходность, оформить бронь.
+> ⚠️ **ВАЖНО:** Сначала прочитай [KNOWLEDGE.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/KNOWLEDGE.md) — там вся база знаний проекта!
 
 ## Сервер
 - IP: 72.56.64.91
@@ -10,52 +9,24 @@ Telegram-бот агрегатор курортной недвижимости. 
 - Сервис: systemctl restart oazis-bot
 
 ## 🎯 ТЕКУЩАЯ ЗАДАЧА
-**Протестировать Николай I в боте и загрузить PDF планировки**
+**Протестировать Николай I в боте**
 
-Последнее действие: finance.json для Николай I заполнен (7 лотов с расчётами)
+Последнее действие: 
+- finance.json для Николай I заполнен (7 лотов)
+- Создана полная база знаний KNOWLEDGE.md
+- Настроен workflow с GitHub
 
-Следующий шаг: проверить работу в боте, загрузить PDF планировки в layouts/
-
----
-
-## 📋 WORKFLOW
-
-**Репозиторий:** https://github.com/semiekhin/oazis-bot (публичный)
-
-**После любых изменений на сервере:**
-```bash
-/opt/oazis/sync.sh
-```
-
-**Что делает sync.sh:**
-- Обновляет PROJECT.md со списком всех файлов
-- Коммитит и пушит на GitHub
-- Claude в новом чате видит актуальный код
-
-**В конце чата:** попроси "обнови текущую задачу для нового чата" — Claude обновит CURRENT_TASK.md и даст команду для sync.sh
+Следующий шаг: 
+1. Перезапустить бота: systemctl restart oazis-bot
+2. Проверить работу Николай I в боте
+3. Загрузить PDF планировки в layouts/
 
 ---
 
-## Стек
-- Python 3 + FastAPI
-- Telegram Bot API (webhook через Cloudflare)  
-- OpenAI API (AI-консультант)
-- JSON-конфиги для данных объектов
-
-## Активные объекты
-- ✅ RIZALTA (Алтай)
-- ✅ Мойнако резорт (Евпатория)
-- ⏳ Николай I (Анапа) — в работе
-
-## TODO
-См. [TODO.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/TODO.md)
-
-## Математическая модель
-См. [docs/FINANCE_MODEL.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/docs/FINANCE_MODEL.md)
-
-## Все файлы проекта (raw-ссылки для Claude)
+## Все файлы проекта (raw-ссылки)
 - [CHANGELOG.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/CHANGELOG.md)
 - [CURRENT_TASK.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/CURRENT_TASK.md)
+- [KNOWLEDGE.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/KNOWLEDGE.md)
 - [PROJECT.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/PROJECT.md)
 - [README.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/README.md)
 - [TODO.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/TODO.md)
@@ -87,6 +58,3 @@ Telegram-бот агрегатор курортной недвижимости. 
 - [services/data_loader.py](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/services/data_loader.py)
 - [services/notifications.py](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/services/notifications.py)
 - [services/telegram.py](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/services/telegram.py)
-
-## Контакты
-Разработка: Claude + Сергей
