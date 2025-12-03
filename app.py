@@ -68,6 +68,8 @@ from handlers import (
     
     # AI
     handle_free_text,
+    handle_why_region,
+    handle_why_project,
 )
 
 
@@ -159,6 +161,15 @@ async def process_callback(callback: Dict[str, Any]):
         if len(parts) == 2:
             city_id, object_id = parts
             await handle_object_selected(chat_id, city_id, object_id)
+    elif data.startswith("why_region_"):
+        # Почему Алтай
+        await handle_why_region(chat_id, data)
+    elif data.startswith("why_project_"):
+        # Почему RIZALTA
+        await handle_why_project(chat_id, data)
+    elif data == "back_to_object_menu":
+        from handlers.object_handlers import show_object_menu
+        await show_object_menu(chat_id)
 
 
 async def process_message(chat_id: int, text: str, user_info: Dict[str, Any]):
@@ -247,8 +258,9 @@ async def process_message(chat_id: int, text: str, user_info: Dict[str, Any]):
             # Ищем юнит по площади (кнопка "27.91 м²" -> area_m2 = 27.91)
             for u in finance_for_unit["units"]:
                 area = u.get("area_m2")
-                if area and text == f"{area} м²":
-                    selected_unit_code = u.get("code")
+                code = u.get("code") or u.get("unit_code")
+                if (area and text == f"{area} м²") or (code and text == code):
+                    selected_unit_code = u.get("code") or u.get("unit_code")
                     break
     
     if selected_unit_code:

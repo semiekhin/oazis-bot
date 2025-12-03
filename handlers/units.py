@@ -246,7 +246,7 @@ FINANCE_TEXTS = {
 
 async def handle_base_roi(chat_id: int, unit_code: Optional[str] = None):
     """
-    📊 Рентабельность/доходность — динамический расчёт из finance.json.
+    📊 Рентабельность/доходность — с поддержкой ROI_TEXTS для RIZALTA.
     """
     try:
         from models.state import get_selected_city, get_selected_object
@@ -258,6 +258,16 @@ async def handle_base_roi(chat_id: int, unit_code: Optional[str] = None):
         if not city_id or not object_id:
             await send_message(chat_id, "⚠️ Сначала выберите объект.")
             return
+        
+        # ✨ Для RIZALTA используем готовые ROI_TEXTS
+        if object_id == "rizalta" and unit_code:
+            normalized = normalize_unit_code(unit_code)
+            if normalized in ROI_TEXTS:
+                inline_buttons = [
+                    [{"text": "📅 Записаться на онлайн-показ", "callback_data": "online_show"}]
+                ]
+                await send_message_inline(chat_id, ROI_TEXTS[normalized], inline_buttons)
+                return
         
         finance = load_object_finance(city_id, object_id)
         if not finance or "units" not in finance:
@@ -415,7 +425,7 @@ async def handle_unit_roi(chat_id: int, unit_code: str):
 
 async def handle_finance_overview(chat_id: int, unit_code: Optional[str] = None):
     """
-    💳 Рассрочка и ипотека — динамическая генерация из finance.json.
+    💳 Рассрочка и ипотека — с поддержкой FINANCE_TEXTS для RIZALTA.
     """
     try:
         from models.state import get_selected_city, get_selected_object
@@ -427,6 +437,16 @@ async def handle_finance_overview(chat_id: int, unit_code: Optional[str] = None)
         if not city_id or not object_id:
             await send_message(chat_id, "⚠️ Сначала выберите объект.")
             return
+        
+        # ✨ Для RIZALTA используем готовые FINANCE_TEXTS
+        if object_id == "rizalta" and unit_code:
+            normalized = normalize_unit_code(unit_code)
+            if normalized in FINANCE_TEXTS:
+                inline_buttons = [
+                    [{"text": "📅 Записаться на онлайн-показ", "callback_data": "online_show"}]
+                ]
+                await send_message_inline(chat_id, FINANCE_TEXTS[normalized], inline_buttons)
+                return
         
         finance = load_object_finance(city_id, object_id)
         if not finance or "units" not in finance:
@@ -620,6 +640,17 @@ async def handle_budget_input(chat_id: int, text: str):
     if not city_id or not object_id:
         reply_text = "⚠️ Сначала выберите объект."
         await send_message(chat_id, reply_text)
+        return
+    
+    # ✨ Для RIZALTA используем портфельный алгоритм
+    if object_id == "rizalta":
+        reply_text = suggest_units_for_budget(budget, "")
+        clear_dialog_state(chat_id)
+        inline_buttons = [
+            [{"text": "📎 Планировки", "callback_data": "get_layouts"}],
+            [{"text": "🔥 Записаться на онлайн-показ", "callback_data": "online_show"}]
+        ]
+        await send_message_inline(chat_id, reply_text, inline_buttons)
         return
     
     finance = load_object_finance(city_id, object_id)

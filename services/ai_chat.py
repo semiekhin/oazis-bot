@@ -7,7 +7,7 @@ from typing import Dict, Any, List, Optional
 from openai import OpenAI
 
 from config.settings import OPENAI_API_KEY, OPENAI_MODEL, OPENAI_MAX_TOKENS
-from services.data_loader import load_finance, load_instructions
+from services.data_loader import load_finance, load_instructions, load_object_finance, load_object_knowledge
 
 
 # Инициализация клиента
@@ -107,9 +107,10 @@ def build_finance_system_context(finance: Dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def ask_ai_about_project(user_text: str) -> str:
+def ask_ai_about_project(user_text: str, city_id: str = None, object_id: str = None) -> str:
     """
     ИИ-консультант по проекту.
+    Поддерживает мультиобъектность — загружает данные выбранного объекта.
     """
     if not client:
         return (
@@ -117,23 +118,29 @@ def ask_ai_about_project(user_text: str) -> str:
             "Предлагаю подключить менеджера для консультации."
         )
     
-    # Загружаем инструкции и финансы
-    instructions = load_instructions()
-    finance = load_finance()
+    # Загружаем инструкции и финансы выбранного объекта
+    if city_id and object_id:
+        instructions = load_object_knowledge(city_id, object_id) or load_instructions()
+        finance = load_object_finance(city_id, object_id)
+    else:
+        instructions = load_instructions()
+        finance = load_finance()
     if finance:
         instructions = instructions + "\n\n" + build_finance_system_context(finance)
     
-    kwargs: Dict[str, Any] = {
-        "model": OPENAI_MODEL,
-        "instructions": instructions,
-        "input": user_text,
-        "max_output_tokens": OPENAI_MAX_TOKENS,
-    }
+    messages = [
+        {"role": "system", "content": instructions},
+        {"role": "user", "content": user_text}
+    ]
     
     try:
-        response = client.responses.create(**kwargs)
+        response = client.chat.completions.create(
+            model=OPENAI_MODEL,
+            messages=messages,
+            max_tokens=OPENAI_MAX_TOKENS,
+        )
     except Exception as e:
-        print(f"[AI] error calling Responses API: {e}")
+        print(f"[AI] error calling Chat Completions API: {e}")
         return (
             "Сейчас ИИ-сервис временно недоступен, но это не мешает вам получить "
             "полноценную консультацию по RIZALTA. 💬\n\n"
@@ -143,7 +150,7 @@ def ask_ai_about_project(user_text: str) -> str:
     # Извлекаем текст ответа
     text = None
     try:
-        text = response.output_text
+        text = response.choices[0].message.content
     except Exception:
         try:
             parts: List[str] = []

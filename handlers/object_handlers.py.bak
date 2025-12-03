@@ -9,7 +9,7 @@ import os
 
 
 async def show_object_about(chat_id: int):
-    """Показать информацию о проекте — с подменю для RIZALTA"""
+    """Показать информацию о проекте"""
     city_id = get_selected_city(chat_id)
     object_id = get_selected_object(chat_id)
     
@@ -24,26 +24,6 @@ async def show_object_about(chat_id: int):
         await send_message(chat_id, "Объект не найден", with_keyboard=True, buttons=OBJECT_MENU_BUTTONS)
         return
     
-    # ✨ Для RIZALTA показываем подменю
-    if object_id == "rizalta":
-        from services.telegram import send_message_inline
-        inline_buttons = [
-            [
-                {"text": "🏔 Почему Алтай", "callback_data": "why_region_altai_rizalta"},
-                {"text": "🏨 Почему RIZALTA", "callback_data": "why_project_altai_rizalta"}
-            ],
-            [
-                {"text": "🔙 Назад", "callback_data": "back_to_object_menu"}
-            ]
-        ]
-        await send_message_inline(
-            chat_id,
-            "📖 <b>О проекте RIZALTA</b>\n\nВыберите раздел:",
-            inline_buttons
-        )
-        return
-    
-    # Для других объектов — показываем knowledge.txt
     knowledge = load_object_knowledge(city_id, object_id)
     
     if knowledge:
@@ -211,8 +191,7 @@ def get_unit_buttons_for_object(chat_id: int) -> list:
     for u in units:
         area = u.get("area_m2")
         if area:
-            code = u.get("code") or u.get("unit_code") or f"{area} м²"
-            unit_buttons.append(code)
+            unit_buttons.append(f"{area} м²")
     
     if not unit_buttons:
         return [["🔙 Назад"]]
@@ -224,73 +203,3 @@ def get_unit_buttons_for_object(chat_id: int) -> list:
     rows.append(["🔙 Назад"])
     
     return rows
-
-
-async def handle_why_region(chat_id: int, callback_data: str):
-    """Обработчик 'Почему Алтай'"""
-    from services.telegram import send_message_inline
-    import os
-    
-    # Парсим callback: why_region_altai_rizalta
-    parts = callback_data.replace("why_region_", "").split("_")
-    city_id = parts[0] if parts else "altai"
-    object_id = parts[1] if len(parts) > 1 else "rizalta"
-    
-    # Загружаем текст
-    filepath = f"/opt/oazis/data/objects/{city_id}/{object_id}/text_why_belokuricha.md"
-    
-    text = ""
-    if os.path.exists(filepath):
-        with open(filepath, 'r', encoding='utf-8') as f:
-            text = f.read()
-    
-    if not text:
-        text = "Информация о регионе скоро будет добавлена."
-    
-    inline_buttons = [
-        [
-            {"text": "🏨 Почему RIZALTA", "callback_data": f"why_project_{city_id}_{object_id}"}
-        ],
-        [
-            {"text": "🔙 Назад", "callback_data": "back_to_object_menu"}
-        ]
-    ]
-    
-    await send_message_inline(chat_id, text, inline_buttons)
-
-
-async def handle_why_project(chat_id: int, callback_data: str):
-    """Обработчик 'Почему RIZALTA'"""
-    from services.telegram import send_message_inline
-    import os
-    
-    # Парсим callback: why_project_altai_rizalta
-    parts = callback_data.replace("why_project_", "").split("_")
-    city_id = parts[0] if parts else "altai"
-    object_id = parts[1] if len(parts) > 1 else "rizalta"
-    
-    # Загружаем текст
-    filepath = f"/opt/oazis/data/objects/{city_id}/{object_id}/text_why_rizalta.md"
-    
-    text = ""
-    if os.path.exists(filepath):
-        with open(filepath, 'r', encoding='utf-8') as f:
-            text = f.read()
-    
-    if not text:
-        text = "Информация о проекте скоро будет добавлена."
-    
-    # Обрезаем если слишком длинный
-    if len(text) > 4000:
-        text = text[:4000] + "\n\n... (продолжение по запросу)"
-    
-    inline_buttons = [
-        [
-            {"text": "🏔 Почему Алтай", "callback_data": f"why_region_{city_id}_{object_id}"}
-        ],
-        [
-            {"text": "🔙 Назад", "callback_data": "back_to_object_menu"}
-        ]
-    ]
-    
-    await send_message_inline(chat_id, text, inline_buttons)

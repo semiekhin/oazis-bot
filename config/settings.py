@@ -3,6 +3,10 @@
 """
 
 import os
+from dotenv import load_dotenv
+
+# Загружаем .env файл
+load_dotenv('/opt/oazis/.env')
 import json
 from typing import List, Dict, Any
 

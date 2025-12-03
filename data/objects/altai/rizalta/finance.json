@@ -2,7 +2,6 @@
   "project": "RIZALTA Resort Belokurikha",
   "completion_year": 2027,
   "completion_quarter": "Q4 2027",
-
   "min_lot": {
     "unit_code": "A209",
     "price_rub": 15251250,
@@ -11,7 +10,6 @@
     "entry_point_rub": 5766000,
     "description": "Минимальный инвестиционный лот в проекте RIZALTA. Цена для расчётов фиксируется на уровне 15 251 250 ₽, при этом в стоимость уже включены 150 000 ₽ сервисных платежей (бронь и юр.сопровождение)."
   },
-
   "investment_scenarios": [
     {
       "id": "short_term_1y",
@@ -37,7 +35,6 @@
       "comment": "Сценарий для более плавной нагрузки: первоначальный взнос 30% и фиксированные платежи по 470 000 ₽ в течение 2 лет."
     }
   ],
-
   "installment_programs": [
     {
       "id": "12m_30pct",
@@ -100,12 +97,10 @@
       "comment": "Удорожание 3% годовых: 1-11 и 13-23 мес по 150 000 ₽, 10% стоимости на 12-й мес, остаток на 24-й мес"
     }
   ],
-
   "installment_notes": {
     "quarterly_option": "При первоначальном взносе от 50% возможно установление ежеквартальных, а не ежемесячных платежей по всем программам.",
     "full_payment_discount": "5% специальная скидка — действует только при полной оплате стоимости гостиничного номера."
   },
-
   "mortgage_programs": [
     {
       "id": "promo_grace_1y",
@@ -123,13 +118,11 @@
       "comment": "В течение льготного периода действует сниженный платёж, далее — стандартный аннуитетный платёж по ипотеке."
     }
   ],
-
   "defaults": {
     "daily_rate_rub": 15000,
     "occupancy_pct": 60,
     "expenses_pct": 50
   },
-
   "units": [
     {
       "unit_code": "A209",
@@ -140,21 +133,34 @@
       "occupancy_pct": 60,
       "expenses_pct": 50,
       "capitalization_projection": {
-        "comment": "Прогноз совокупной доходности (рост стоимости + аренда) по методике из инвестиционного расчёта.",
-        "base_year": 2025,
         "price_2027_rub": 23487000,
         "price_2029_rub": 28419000,
         "total_return_pct_by_year": [
-          { "year": 2025, "total_return_pct": 3.39 },
-          { "year": 2026, "total_return_pct": 23.73 },
-          { "year": 2027, "total_return_pct": 54.24 },
-          { "year": 2028, "total_return_pct": 75.69 },
-          { "year": 2029, "total_return_pct": 84.65 }
+          {
+            "year": 2025,
+            "total_return_pct": 3.39
+          },
+          {
+            "year": 2026,
+            "total_return_pct": 23.73
+          },
+          {
+            "year": 2027,
+            "total_return_pct": 54.24
+          },
+          {
+            "year": 2028,
+            "total_return_pct": 75.69
+          },
+          {
+            "year": 2029,
+            "total_return_pct": 84.65
+          }
         ]
       }
     },
     {
-      "unit_code": "В210",
+      "unit_code": "B210",
       "title": "Стандарт B210",
       "area_m2": 31.6,
       "price_rub": 19671000,
@@ -162,16 +168,29 @@
       "occupancy_pct": 60,
       "expenses_pct": 50,
       "capitalization_projection": {
-        "comment": "Используем ту же модель роста и доходности, что и для A209, но в абсолютных цифрах сумма дохода выше за счёт большей площади и ставки аренды.",
-        "base_year": 2025,
         "price_2027_rub": 30293000,
         "price_2029_rub": 36655000,
         "total_return_pct_by_year": [
-          { "year": 2025, "total_return_pct": 3.39 },
-          { "year": 2026, "total_return_pct": 23.73 },
-          { "year": 2027, "total_return_pct": 54.24 },
-          { "year": 2028, "total_return_pct": 75.69 },
-          { "year": 2029, "total_return_pct": 84.65 }
+          {
+            "year": 2025,
+            "total_return_pct": 3.39
+          },
+          {
+            "year": 2026,
+            "total_return_pct": 23.73
+          },
+          {
+            "year": 2027,
+            "total_return_pct": 54.24
+          },
+          {
+            "year": 2028,
+            "total_return_pct": 75.69
+          },
+          {
+            "year": 2029,
+            "total_return_pct": 84.65
+          }
         ]
       }
     },
@@ -184,21 +203,33 @@
       "occupancy_pct": 60,
       "expenses_pct": 50,
       "capitalization_projection": {
-        "comment": "Та же модель доходности, но максимальный потенциальный денежный поток за счёт самой высокой ставки аренды.",
-        "base_year": 2025,
         "price_2027_rub": 36562000,
         "price_2029_rub": 44240000,
         "total_return_pct_by_year": [
-          { "year": 2025, "total_return_pct": 3.39 },
-          { "year": 2026, "total_return_pct": 23.73 },
-          { "year": 2027, "total_return_pct": 54.24 },
-          { "year": 2028, "total_return_pct": 75.69 },
-          { "year": 2029, "total_return_pct": 84.65 }
+          {
+            "year": 2025,
+            "total_return_pct": 3.39
+          },
+          {
+            "year": 2026,
+            "total_return_pct": 23.73
+          },
+          {
+            "year": 2027,
+            "total_return_pct": 54.24
+          },
+          {
+            "year": 2028,
+            "total_return_pct": 75.69
+          },
+          {
+            "year": 2029,
+            "total_return_pct": 84.65
+          }
         ]
       }
     }
   ],
-
   "extra_notes": {
     "included_fees_note": "В стоимость апартамента уже входят: 50 000 ₽ за бронь и 100 000 ₽ за договор с ООО «Ризалта» (юридическое сопровождение и запуск отеля). По факту реальная стоимость для инвестора на 150 000 ₽ выгоднее, чем у проектов, где эти платежи берут отдельно.",
     "first_year_roi_summary": "За первый год по сценарию с точкой входа 5,766 млн ₽ и ежемесячными платежами вы можете выйти на доходность порядка 70% годовых и полностью окупить вложения примерно за 4 года.",

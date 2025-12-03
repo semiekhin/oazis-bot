@@ -2,6 +2,7 @@
 Обработчик свободного текста — AI-консультант.
 """
 
+from models.state import get_selected_city, get_selected_object
 from services.telegram import send_message_inline
 from services.ai_chat import ask_ai_about_project
 from services.data_loader import load_finance
@@ -112,8 +113,10 @@ async def handle_free_text(chat_id: int, text: str):
                 )
                 return
     
-    # Обычный AI ответ
-    answer = ask_ai_about_project(text)
+    # Обычный AI ответ — передаём выбранный объект
+    city_id = get_selected_city(chat_id)
+    object_id = get_selected_object(chat_id)
+    answer = ask_ai_about_project(text, city_id, object_id)
     
     inline_buttons = [
         [

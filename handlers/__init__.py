@@ -53,4 +53,6 @@ from .object_handlers import (
     start_showing_booking,
     handle_choose_unit_for_roi,
     handle_choose_unit_for_finance,
+    handle_why_region,
+    handle_why_project,
 )
