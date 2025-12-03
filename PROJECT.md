@@ -11,13 +11,15 @@
 ## 🎯 ТЕКУЩАЯ ЗАДАЧА
 **Сделать AI-консультант умным: поиск по всей базе объектов**
 
-Последнее действие: Заполнен finance.json для Николай I с реальными данными из расчётов Cosmos
+### Статус (03.12.2025):
+- ✅ RIZALTA — динамический ROI с капитализацией
+- ✅ Мойнако — работает
+- ✅ Николай I — finance.json заполнен (3 юнита с реальными данными Cosmos)
 
-Следующий шаг:
+### Следующие шаги:
 1. Переписать services/ai_chat.py — загружать ВСЕ объекты
 2. AI должен понимать критерии (бюджет, семья, климат) и искать по всей базе
-3. Если пользователь в контексте объекта — уточнять "Вы спрашиваете про X?"
-4. Давать конкретные цифры из finance.json
+3. Уточнять контекст если пользователь в объекте
 
 ---
 
@@ -34,8 +36,6 @@
 - [config/settings.py](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/config/settings.py)
 - [data/objects/altai/rizalta/finance.json](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/data/objects/altai/rizalta/finance.json)
 - [data/objects/altai/rizalta/knowledge.txt](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/data/objects/altai/rizalta/knowledge.txt)
-- [data/objects/altai/rizalta/text_why_belokuricha.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/data/objects/altai/rizalta/text_why_belokuricha.md)
-- [data/objects/altai/rizalta/text_why_rizalta.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/data/objects/altai/rizalta/text_why_rizalta.md)
 - [data/objects/anapa/nikolay1/finance.json](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/data/objects/anapa/nikolay1/finance.json)
 - [data/objects/anapa/nikolay1/knowledge.txt](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/data/objects/anapa/nikolay1/knowledge.txt)
 - [data/objects/config.json](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/data/objects/config.json)
