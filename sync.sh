@@ -3,10 +3,7 @@ cd /opt/oazis
 
 echo "🔄 Синхронизация OAZIS Bot..."
 
-# 1. Генерируем список файлов
-FILES=$(find /opt/oazis \( -name "*.py" -o -name "*.json" -o -name "*.md" -o -name "*.txt" \) | grep -v venv | grep -v __pycache__ | grep -v ".git" | sort)
-
-# 2. Создаём новый PROJECT.md с актуальным списком
+# Собираем PROJECT.md
 cat > /opt/oazis/PROJECT.md << 'HEADER'
 # OAZIS Bot — Паспорт проекта
 
@@ -19,9 +16,18 @@ Telegram-бот агрегатор курортной недвижимости. 
 - Бот: @OazisAI_Bot
 - Сервис: systemctl restart oazis-bot
 
+HEADER
+
+# Вставляем текущую задачу
+cat /opt/oazis/CURRENT_TASK.md >> /opt/oazis/PROJECT.md
+echo "" >> /opt/oazis/PROJECT.md
+
+cat >> /opt/oazis/PROJECT.md << 'MIDDLE'
+---
+
 ## Стек
 - Python 3 + FastAPI
-- Telegram Bot API (webhook через Cloudflare)
+- Telegram Bot API (webhook через Cloudflare)  
 - OpenAI API (AI-консультант)
 - JSON-конфиги для данных объектов
 
@@ -37,10 +43,10 @@ Telegram-бот агрегатор курортной недвижимости. 
 См. [docs/FINANCE_MODEL.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/docs/FINANCE_MODEL.md)
 
 ## Все файлы проекта (raw-ссылки для Claude)
-HEADER
+MIDDLE
 
-# Добавляем ссылки на файлы
-for f in $FILES; do
+# Список файлов
+find /opt/oazis \( -name "*.py" -o -name "*.json" -o -name "*.md" -o -name "*.txt" \) | grep -v venv | grep -v __pycache__ | grep -v ".git" | sort | while read f; do
     REL_PATH=${f#/opt/oazis/}
     echo "- [$REL_PATH](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/$REL_PATH)" >> /opt/oazis/PROJECT.md
 done
@@ -49,8 +55,8 @@ echo "" >> /opt/oazis/PROJECT.md
 echo "## Контакты" >> /opt/oazis/PROJECT.md
 echo "Разработка: Claude + Сергей" >> /opt/oazis/PROJECT.md
 
-# 3. Git
+# Git
 git add .
-git commit -m "Sync: $(date '+%Y-%m-%d %H:%M')" 2>/dev/null && git push || echo "Нет новых изменений"
+git commit -m "Sync: $(date '+%Y-%m-%d %H:%M')" 2>/dev/null && git push || echo "Нет изменений"
 
 echo "✅ Готово!"

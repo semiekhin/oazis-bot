@@ -14,19 +14,18 @@ Telegram-бот агрегатор курортной недвижимости. 
 
 Последнее действие: получены PDF с расчётами доходности (1005_расчет.pdf)
 
-Что уже есть:
-- 7 лотов из PDF (коды: 2018, 5013, 3017, 2095, 5018, 2002, 6020)
-- Модель расчёта: 45% оператор, 6% налог, сезонность по месяцам
+Что есть:
+- 7 лотов (коды: 2018, 5013, 3017, 2095, 5018, 2002, 6020)
+- Модель: 45% оператор, 6% налог, сезонность
 - knowledge.txt создан
-- finance.json — базовый, нужно заполнить по модели
 
-Следующий шаг: заполнить finance.json с полными данными по модели из расчёта
+Следующий шаг: заполнить finance.json по модели из расчёта
 
 ---
 
 ## Стек
 - Python 3 + FastAPI
-- Telegram Bot API (webhook через Cloudflare)
+- Telegram Bot API (webhook через Cloudflare)  
 - OpenAI API (AI-консультант)
 - JSON-конфиги для данных объектов
 
@@ -43,6 +42,7 @@ Telegram-бот агрегатор курортной недвижимости. 
 
 ## Все файлы проекта (raw-ссылки для Claude)
 - [CHANGELOG.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/CHANGELOG.md)
+- [CURRENT_TASK.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/CURRENT_TASK.md)
 - [PROJECT.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/PROJECT.md)
 - [README.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/README.md)
 - [TODO.md](https://raw.githubusercontent.com/semiekhin/oazis-bot/main/TODO.md)
