@@ -1,0 +1,81 @@
+{
+  "project_name": "Николай I Hotel & Spa",
+  "completion_date": "уточняется",
+  "location": "Анапа, первая береговая линия",
+  "units": [
+    {
+      "code": "1.1",
+      "category": "Студия",
+      "area_m2": 41.40,
+      "living_area_m2": 22.36,
+      "balcony_m2": 9.07,
+      "price": 0,
+      "price_per_m2": 0,
+      "finishing_cost": 0,
+      "total_investment": 0,
+      "annual_revenue": 2825300,
+      "annual_expenses": 0,
+      "annual_profit": 2825300,
+      "payback_years": 0,
+      "roi_percent": 25
+    },
+    {
+      "code": "2.14",
+      "category": "1-комнатный",
+      "area_m2": 64.22,
+      "living_area_m2": 25.10,
+      "bedroom_m2": 14.66,
+      "price": 0,
+      "price_per_m2": 0,
+      "finishing_cost": 0,
+      "total_investment": 0,
+      "annual_revenue": 3260200,
+      "annual_expenses": 0,
+      "annual_profit": 3260200,
+      "payback_years": 0,
+      "roi_percent": 25
+    },
+    {
+      "code": "4.1",
+      "category": "2-комнатный",
+      "area_m2": 158.04,
+      "bedrooms": 2,
+      "balconies": 2,
+      "main_balcony_m2": 47.61,
+      "price": 0,
+      "price_per_m2": 0,
+      "finishing_cost": 0,
+      "total_investment": 0,
+      "annual_revenue": 0,
+      "annual_expenses": 0,
+      "annual_profit": 0,
+      "payback_years": 0,
+      "roi_percent": 25
+    }
+  ],
+  "rental_defaults": {
+    "roi_percent": 25,
+    "management": "Cosmos Hotel Group или самостоятельно"
+  },
+  "installment_programs": [
+    {
+      "name": "Беспроцентная рассрочка",
+      "description": "Беспроцентная рассрочка от застройщика",
+      "interest_rate_percent": 0
+    }
+  ],
+  "mortgage_programs": [
+    {
+      "name": "Ипотека",
+      "description": "Аккредитация в банках. Уточняйте условия у менеджера."
+    }
+  ],
+  "special_offers": [
+    {
+      "name": "Скидка при 100% оплате",
+      "description": "Скидки при полной оплате. Уточняйте у менеджера."
+    }
+  ],
+  "developer": "АН Инвестиции",
+  "management_company": "Cosmos Hotel Group"
+}

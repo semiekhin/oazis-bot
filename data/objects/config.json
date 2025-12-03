@@ -1,0 +1,58 @@
+{
+  "cities": [
+    {
+      "id": "evpatoria",
+      "name": "Евпатория",
+      "icon": "🏖",
+      "objects": [
+        {"id": "resort", "name": "Резорт", "status": "coming_soon"},
+        {"id": "prospekt", "name": "Проспект", "status": "coming_soon"},
+        {"id": "moynako", "name": "Мойнако резорт", "status": "active"}
+      ]
+    },
+    {
+      "id": "yalta",
+      "name": "Ялта",
+      "icon": "🏔",
+      "objects": [
+        {"id": "royalta", "name": "Роялта", "status": "coming_soon"},
+        {"id": "darsan", "name": "Дарсан", "status": "coming_soon"}
+      ]
+    },
+    {
+      "id": "sochi",
+      "name": "Сочи",
+      "icon": "🌴",
+      "objects": [
+        {"id": "belye_nochi", "name": "Белые ночи", "status": "coming_soon"},
+        {"id": "lesochi", "name": "Лесочи", "status": "coming_soon"},
+        {"id": "benefit", "name": "Benefit", "status": "coming_soon"}
+      ]
+    },
+    {
+      "id": "tuapse",
+      "name": "Туапсе",
+      "icon": "🌊",
+      "objects": [
+        {"id": "goa", "name": "ГОА", "status": "coming_soon"},
+        {"id": "moreol", "name": "Мореоль", "status": "coming_soon"}
+      ]
+    },
+    {
+      "id": "anapa",
+      "name": "Анапа",
+      "icon": "☀️",
+      "objects": [
+        {"id": "nikolay1", "name": "Николай I", "status": "active"}
+      ]
+    },
+    {
+      "id": "altai",
+      "name": "Алтай",
+      "icon": "🏔",
+      "objects": [
+        {"id": "rizalta", "name": "RIZALTA", "status": "active"}
+      ]
+    }
+  ]
+}

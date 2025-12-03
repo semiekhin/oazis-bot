@@ -1,0 +1,274 @@
+{
+  "project_name": "Мойнако Резорт",
+  "completion_date": "III квартал 2027",
+  "units": [
+    {
+      "code": "260",
+      "block": "Блок 1",
+      "floor": 16,
+      "area_m2": 27.91,
+      "category": "Студия",
+      "price": 13354935,
+      "price_per_m2": 478500,
+      "finishing_cost": 2900000,
+      "total_investment": 16254935,
+      "annual_revenue": 2371735,
+      "annual_expenses": 1054046,
+      "annual_profit": 1317689,
+      "payback_years": 9,
+      "roi_percent": 11.3,
+      "price_2027": 15908700,
+      "growth_to_2027_pct": 19
+    },
+    {
+      "code": "282",
+      "block": "Блок 1",
+      "floor": 17,
+      "area_m2": 28.53,
+      "category": "Студия",
+      "price": 13661403,
+      "price_per_m2": 478843,
+      "finishing_cost": 2900000,
+      "total_investment": 16561403,
+      "annual_revenue": 2371735,
+      "annual_expenses": 1054046,
+      "annual_profit": 1317689,
+      "payback_years": 9,
+      "roi_percent": 11.3,
+      "price_2027": 16262100,
+      "growth_to_2027_pct": 19
+    },
+    {
+      "code": "146",
+      "block": "Блок 1",
+      "floor": 10,
+      "area_m2": 37.05,
+      "category": "Студия",
+      "price": 14695387,
+      "price_per_m2": 396637,
+      "finishing_cost": 4200000,
+      "total_investment": 18895387,
+      "annual_revenue": 3320429,
+      "annual_expenses": 1280084,
+      "annual_profit": 2040345,
+      "payback_years": 9,
+      "roi_percent": 11.2,
+      "price_2027": 19266000,
+      "growth_to_2027_pct": 31
+    },
+    {
+      "code": "112",
+      "block": "Блок 1",
+      "floor": 8,
+      "area_m2": 39.85,
+      "category": "Студия",
+      "price": 16532577,
+      "price_per_m2": 414870,
+      "finishing_cost": 4200000,
+      "total_investment": 20732577,
+      "annual_revenue": 3320429,
+      "annual_expenses": 1280084,
+      "annual_profit": 2040345,
+      "payback_years": 9,
+      "roi_percent": 11.2,
+      "price_2027": 20722000,
+      "growth_to_2027_pct": 25
+    },
+    {
+      "code": "618",
+      "block": "Блок 2",
+      "floor": 15,
+      "area_m2": 40.13,
+      "category": "1-комнатный",
+      "price": 18372888,
+      "price_per_m2": 457834,
+      "finishing_cost": 4200000,
+      "total_investment": 22572888,
+      "annual_revenue": 3320429,
+      "annual_expenses": 1280084,
+      "annual_profit": 2040345,
+      "payback_years": 9,
+      "roi_percent": 11.2,
+      "price_2027": 20867600,
+      "growth_to_2027_pct": 14
+    },
+    {
+      "code": "303",
+      "block": "Блок 1",
+      "floor": 18,
+      "area_m2": 42.12,
+      "category": "Студия",
+      "price": 16181278,
+      "price_per_m2": 384171,
+      "finishing_cost": 4200000,
+      "total_investment": 20381278,
+      "annual_revenue": 3320429,
+      "annual_expenses": 1280084,
+      "annual_profit": 2040345,
+      "payback_years": 9,
+      "roi_percent": 11.2,
+      "price_2027": 21902400,
+      "growth_to_2027_pct": 35
+    }
+  ],
+  "rental_defaults": {
+    "average_occupancy_percent": 51,
+    "expense_ratio_percent": 30,
+    "monthly_rates": [
+      {
+        "month": "Январь",
+        "adr": 11000,
+        "occupancy": 45
+      },
+      {
+        "month": "Февраль",
+        "adr": 11000,
+        "occupancy": 40
+      },
+      {
+        "month": "Март",
+        "adr": 11000,
+        "occupancy": 45
+      },
+      {
+        "month": "Апрель",
+        "adr": 12320,
+        "occupancy": 45
+      },
+      {
+        "month": "Май",
+        "adr": 13530,
+        "occupancy": 35
+      },
+      {
+        "month": "Июнь",
+        "adr": 17050,
+        "occupancy": 70
+      },
+      {
+        "month": "Июль",
+        "adr": 19800,
+        "occupancy": 85
+      },
+      {
+        "month": "Август",
+        "adr": 19800,
+        "occupancy": 85
+      },
+      {
+        "month": "Сентябрь",
+        "adr": 17050,
+        "occupancy": 35
+      },
+      {
+        "month": "Октябрь",
+        "adr": 12980,
+        "occupancy": 45
+      },
+      {
+        "month": "Ноябрь",
+        "adr": 11000,
+        "occupancy": 40
+      },
+      {
+        "month": "Декабрь",
+        "adr": 11000,
+        "occupancy": 45
+      }
+    ]
+  },
+  "expenses_breakdown": {
+    "taxes": 110823,
+    "utilities": 106140,
+    "management_fee_percent": 30
+  },
+  "installment_programs": [
+    {
+      "name": "Базовая рассрочка",
+      "down_payment_percent": 30,
+      "duration_months": 24,
+      "payment_schedule": "помесячно или поквартально",
+      "interest_rate_percent": 0
+    }
+  ],
+  "mortgage_programs": [
+    {
+      "name": "Специальные условия",
+      "description": "Действуют специальные условия по ипотеке. Уточняйте у менеджера."
+    }
+  ],
+  "capitalization_projection": {
+    "studio_24_30_yard": [
+      {
+        "period": "Май 2024",
+        "price_per_m2": 207200,
+        "label": "Старт продаж"
+      },
+      {
+        "period": "Декабрь 2024",
+        "price_per_m2": 303400
+      },
+      {
+        "period": "2025",
+        "price_per_m2": 370000
+      },
+      {
+        "period": "2026",
+        "price_per_m2": 444000
+      },
+      {
+        "period": "2027",
+        "price_per_m2": 543900,
+        "label": "Ввод объекта"
+      }
+    ],
+    "studio_24_30_sea": [
+      {
+        "period": "Май 2024",
+        "price_per_m2": 229000,
+        "label": "Старт продаж"
+      },
+      {
+        "period": "Декабрь 2024",
+        "price_per_m2": 336000
+      },
+      {
+        "period": "2025",
+        "price_per_m2": 410000
+      },
+      {
+        "period": "2026",
+        "price_per_m2": 492000
+      },
+      {
+        "period": "2027",
+        "price_per_m2": 602000,
+        "label": "Ввод объекта"
+      }
+    ],
+    "comfort_35_45_sea": [
+      {
+        "period": "Май 2024",
+        "price_per_m2": 197000,
+        "label": "Старт продаж"
+      },
+      {
+        "period": "Декабрь 2024",
+        "price_per_m2": 290000
+      },
+      {
+        "period": "2025",
+        "price_per_m2": 350000
+      },
+      {
+        "period": "2026",
+        "price_per_m2": 420000
+      },
+      {
+        "period": "2027",
+        "price_per_m2": 520000,
+        "label": "Ввод объекта"
+      }
+    ]
+  }
+}
