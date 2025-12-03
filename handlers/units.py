@@ -246,7 +246,7 @@ FINANCE_TEXTS = {
 
 async def handle_base_roi(chat_id: int, unit_code: Optional[str] = None):
     """
-    📊 Рентабельность/доходность — с поддержкой ROI_TEXTS для RIZALTA.
+    📊 Рентабельность/доходность — динамический расчёт из finance.json.
     """
     try:
         from models.state import get_selected_city, get_selected_object
@@ -259,25 +259,16 @@ async def handle_base_roi(chat_id: int, unit_code: Optional[str] = None):
             await send_message(chat_id, "⚠️ Сначала выберите объект.")
             return
         
-        # ✨ Для RIZALTA используем готовые ROI_TEXTS
-        if object_id == "rizalta" and unit_code:
-            normalized = normalize_unit_code(unit_code)
-            if normalized in ROI_TEXTS:
-                inline_buttons = [
-                    [{"text": "📅 Записаться на онлайн-показ", "callback_data": "online_show"}]
-                ]
-                await send_message_inline(chat_id, ROI_TEXTS[normalized], inline_buttons)
-                return
-        
         finance = load_object_finance(city_id, object_id)
         if not finance or "units" not in finance:
             await send_message(chat_id, "⚠️ Финансовые данные объекта не найдены.")
             return
         
-        # Находим юнит по коду
+        # Находим юнит по коду (поддержка обоих ключей)
         unit = None
         for u in finance["units"]:
-            if u.get("code") == unit_code:
+            code = u.get("code") or u.get("unit_code")
+            if code == unit_code:
                 unit = u
                 break
         
@@ -285,42 +276,81 @@ async def handle_base_roi(chat_id: int, unit_code: Optional[str] = None):
             await send_message(chat_id, f"⚠️ Информация по апартаменту {unit_code} не найдена.")
             return
         
-        # Формируем текст
+        # Данные юнита
         category = unit.get("category", "Апартамент")
         area = unit.get("area_m2", 0)
-        price = unit.get("price", 0)
+        price = unit.get("price") or unit.get("price_rub", 0)
         finishing = unit.get("finishing_cost", 0)
-        total = unit.get("total_investment", price + finishing)
+        total = unit.get("total_investment") or (price + finishing)
         revenue = unit.get("annual_revenue", 0)
         expenses = unit.get("annual_expenses", 0)
-        profit = unit.get("annual_profit", revenue - expenses)
+        profit = unit.get("annual_profit") or (revenue - expenses)
         payback = unit.get("payback_years", 0)
         roi = unit.get("roi_percent", 0)
         floor = unit.get("floor", "")
         block = unit.get("block", "")
         
-        text = f"""📊 <b>{category} №{unit_code}</b>
+        # Капитализация
+        price_2027 = unit.get("price_2027") or 0
+        growth_pct = unit.get("growth_to_2027_pct") or 0
         
-🏢 {block}, этаж {floor}
-📐 Площадь: {area} м²
-
-💰 <b>Стоимость:</b>
-- Апартамент: {price:,.0f} ₽
-- Ремонт и оснащение: {finishing:,.0f} ₽
-- <b>Итого вложений: {total:,.0f} ₽</b>
-
-📈 <b>Доходность (прогноз):</b>
-- Выручка в год: {revenue:,.0f} ₽
-- Расходы в год: {expenses:,.0f} ₽
-- <b>Чистая прибыль: {profit:,.0f} ₽/год</b>
-
-🎯 <b>Показатели:</b>
-- Рентабельность: {roi}% годовых
-- Окупаемость: {payback} лет
-
-💬 <b>Хотите узнать подробнее?</b> Запишитесь на онлайн-показ 👇"""
+        # Fallback на capitalization_projection
+        if not price_2027:
+            cap = unit.get("capitalization_projection", {})
+            price_2027 = cap.get("price_2027_rub", 0)
+            if price_2027 and price:
+                growth_pct = round((price_2027 - price) / price * 100)
         
-        text = text.replace(",", " ").replace(".0", "")
+        growth_abs = price_2027 - price if price_2027 and price else 0
+        
+        # Формируем текст
+        text_lines = []
+        text_lines.append(f"📊 <b>{category} №{unit_code}</b>")
+        
+        if block or floor:
+            location = f"🏢 {block}, этаж {floor}" if block and floor else f"🏢 {block or ''}{floor or ''}"
+            text_lines.append(location.strip())
+        
+        text_lines.append(f"📐 Площадь: {area} м²")
+        text_lines.append("")
+        
+        # Стоимость
+        text_lines.append("💰 <b>Стоимость:</b>")
+        text_lines.append(f"▪️ Апартамент: {price:,.0f} ₽".replace(",", " "))
+        if finishing > 0:
+            text_lines.append(f"▪️ Ремонт и оснащение: {finishing:,.0f} ₽".replace(",", " "))
+            text_lines.append(f"▪️ <b>Итого вложений: {total:,.0f} ₽</b>".replace(",", " "))
+        text_lines.append("")
+        
+        # Доходность
+        text_lines.append("📈 <b>Доходность (прогноз):</b>")
+        if revenue > 0:
+            text_lines.append(f"▪️ Выручка в год: {revenue:,.0f} ₽".replace(",", " "))
+        if expenses > 0:
+            text_lines.append(f"▪️ Расходы в год: {expenses:,.0f} ₽".replace(",", " "))
+        if profit > 0:
+            text_lines.append(f"▪️ <b>Чистая прибыль: {profit:,.0f} ₽/год</b>".replace(",", " "))
+        text_lines.append("")
+        
+        # Показатели
+        text_lines.append("🎯 <b>Показатели:</b>")
+        if roi > 0:
+            text_lines.append(f"▪️ Рентабельность: {roi}% годовых")
+        if payback > 0:
+            text_lines.append(f"▪️ Окупаемость: {payback} лет")
+        text_lines.append("")
+        
+        # Капитализация
+        if price_2027 > 0:
+            text_lines.append("📊 <b>Рост стоимости:</b>")
+            text_lines.append(f"▪️ Прогноз 2027: {price_2027:,.0f} ₽ (+{growth_abs:,.0f} ₽, +{growth_pct}%)".replace(",", " "))
+            annual_growth = int(price_2027 * 0.08)
+            text_lines.append(f"▪️ Далее: ~+{annual_growth:,.0f} ₽/год (+8%)".replace(",", " "))
+            text_lines.append("")
+        
+        text_lines.append("💬 <b>Хотите узнать подробнее?</b> Запишитесь на онлайн-показ 👇")
+        
+        text = "\n".join(text_lines)
         
         inline_buttons = [
             [{"text": "📅 Записаться на онлайн-показ", "callback_data": "online_show"}]

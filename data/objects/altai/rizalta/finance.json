@@ -2,6 +2,7 @@
   "project": "RIZALTA Resort Belokurikha",
   "completion_year": 2027,
   "completion_quarter": "Q4 2027",
+
   "min_lot": {
     "unit_code": "A209",
     "price_rub": 15251250,
@@ -10,6 +11,7 @@
     "entry_point_rub": 5766000,
     "description": "Минимальный инвестиционный лот в проекте RIZALTA. Цена для расчётов фиксируется на уровне 15 251 250 ₽, при этом в стоимость уже включены 150 000 ₽ сервисных платежей (бронь и юр.сопровождение)."
   },
+
   "investment_scenarios": [
     {
       "id": "short_term_1y",
@@ -35,14 +37,18 @@
       "comment": "Сценарий для более плавной нагрузки: первоначальный взнос 30% и фиксированные платежи по 470 000 ₽ в течение 2 лет."
     }
   ],
+
   "installment_programs": [
     {
       "id": "12m_30pct",
       "name": "Рассрочка 12 мес, ПВ 30%",
+      "down_payment_percent": 30,
+      "duration_months": 12,
       "first_payment_pct": 30,
       "months": 12,
       "rate_pct": 0,
       "payment_type": "equal",
+      "payment_schedule": "помесячно",
       "comment": "Остаток равными ежемесячными платежами"
     },
     {
@@ -97,14 +103,17 @@
       "comment": "Удорожание 3% годовых: 1-11 и 13-23 мес по 150 000 ₽, 10% стоимости на 12-й мес, остаток на 24-й мес"
     }
   ],
+
   "installment_notes": {
     "quarterly_option": "При первоначальном взносе от 50% возможно установление ежеквартальных, а не ежемесячных платежей по всем программам.",
     "full_payment_discount": "5% специальная скидка — действует только при полной оплате стоимости гостиничного номера."
   },
+
   "mortgage_programs": [
     {
       "id": "promo_grace_1y",
       "name": "Ипотека с льготным платежом 1 год",
+      "description": "Льготная ставка 4.4% в первый год, далее стандартный платёж",
       "object_price_rub": 15117288,
       "first_payment_rub": 4309200,
       "first_payment_pct": 28.51,
@@ -118,121 +127,127 @@
       "comment": "В течение льготного периода действует сниженный платёж, далее — стандартный аннуитетный платёж по ипотеке."
     }
   ],
+
   "defaults": {
     "daily_rate_rub": 15000,
     "occupancy_pct": 60,
     "expenses_pct": 50
   },
+
   "units": [
     {
       "unit_code": "A209",
+      "code": "A209",
       "title": "Студия A209",
+      "category": "Студия",
+      "block": "Корпус 1 FAMILY",
+      "floor": 2,
       "area_m2": 24.5,
       "price_rub": 15251250,
+      "price": 15251250,
+      "finishing_cost": 0,
+      "total_investment": 15251250,
       "daily_rate_rub": 15000,
       "occupancy_pct": 60,
       "expenses_pct": 50,
+      "annual_revenue": 3285000,
+      "annual_expenses": 1642500,
+      "annual_profit": 1642500,
+      "roi_percent": 10.8,
+      "payback_years": 9,
+      "price_2027": 23487000,
+      "growth_to_2027_pct": 54,
       "capitalization_projection": {
+        "comment": "Прогноз совокупной доходности (рост стоимости + аренда).",
+        "base_year": 2025,
         "price_2027_rub": 23487000,
         "price_2029_rub": 28419000,
         "total_return_pct_by_year": [
-          {
-            "year": 2025,
-            "total_return_pct": 3.39
-          },
-          {
-            "year": 2026,
-            "total_return_pct": 23.73
-          },
-          {
-            "year": 2027,
-            "total_return_pct": 54.24
-          },
-          {
-            "year": 2028,
-            "total_return_pct": 75.69
-          },
-          {
-            "year": 2029,
-            "total_return_pct": 84.65
-          }
+          { "year": 2025, "total_return_pct": 3.39 },
+          { "year": 2026, "total_return_pct": 23.73 },
+          { "year": 2027, "total_return_pct": 54.24 },
+          { "year": 2028, "total_return_pct": 75.69 },
+          { "year": 2029, "total_return_pct": 84.65 }
         ]
       }
     },
     {
       "unit_code": "B210",
+      "code": "B210",
       "title": "Стандарт B210",
+      "category": "Стандарт",
+      "block": "Корпус 1 FAMILY",
+      "floor": 2,
       "area_m2": 31.6,
       "price_rub": 19671000,
+      "price": 19671000,
+      "finishing_cost": 0,
+      "total_investment": 19671000,
       "daily_rate_rub": 17000,
       "occupancy_pct": 60,
       "expenses_pct": 50,
+      "annual_revenue": 3723000,
+      "annual_expenses": 1861500,
+      "annual_profit": 1861500,
+      "roi_percent": 9.5,
+      "payback_years": 11,
+      "price_2027": 30293000,
+      "growth_to_2027_pct": 54,
       "capitalization_projection": {
+        "comment": "Та же модель роста, но выше абсолютные цифры.",
+        "base_year": 2025,
         "price_2027_rub": 30293000,
         "price_2029_rub": 36655000,
         "total_return_pct_by_year": [
-          {
-            "year": 2025,
-            "total_return_pct": 3.39
-          },
-          {
-            "year": 2026,
-            "total_return_pct": 23.73
-          },
-          {
-            "year": 2027,
-            "total_return_pct": 54.24
-          },
-          {
-            "year": 2028,
-            "total_return_pct": 75.69
-          },
-          {
-            "year": 2029,
-            "total_return_pct": 84.65
-          }
+          { "year": 2025, "total_return_pct": 3.39 },
+          { "year": 2026, "total_return_pct": 23.73 },
+          { "year": 2027, "total_return_pct": 54.24 },
+          { "year": 2028, "total_return_pct": 75.69 },
+          { "year": 2029, "total_return_pct": 84.65 }
         ]
       }
     },
     {
       "unit_code": "A305",
+      "code": "A305",
       "title": "Люкс A305",
+      "category": "Люкс",
+      "block": "Корпус 1 FAMILY",
+      "floor": 3,
       "area_m2": 38.8,
       "price_rub": 23741720,
+      "price": 23741720,
+      "finishing_cost": 0,
+      "total_investment": 23741720,
       "daily_rate_rub": 21000,
       "occupancy_pct": 60,
       "expenses_pct": 50,
+      "annual_revenue": 4599000,
+      "annual_expenses": 2299500,
+      "annual_profit": 2299500,
+      "roi_percent": 9.7,
+      "payback_years": 10,
+      "price_2027": 36562000,
+      "growth_to_2027_pct": 54,
       "capitalization_projection": {
+        "comment": "Максимальный денежный поток за счёт высокой ставки аренды.",
+        "base_year": 2025,
         "price_2027_rub": 36562000,
         "price_2029_rub": 44240000,
         "total_return_pct_by_year": [
-          {
-            "year": 2025,
-            "total_return_pct": 3.39
-          },
-          {
-            "year": 2026,
-            "total_return_pct": 23.73
-          },
-          {
-            "year": 2027,
-            "total_return_pct": 54.24
-          },
-          {
-            "year": 2028,
-            "total_return_pct": 75.69
-          },
-          {
-            "year": 2029,
-            "total_return_pct": 84.65
-          }
+          { "year": 2025, "total_return_pct": 3.39 },
+          { "year": 2026, "total_return_pct": 23.73 },
+          { "year": 2027, "total_return_pct": 54.24 },
+          { "year": 2028, "total_return_pct": 75.69 },
+          { "year": 2029, "total_return_pct": 84.65 }
         ]
       }
     }
   ],
+
   "extra_notes": {
-    "included_fees_note": "В стоимость апартамента уже входят: 50 000 ₽ за бронь и 100 000 ₽ за договор с ООО «Ризалта» (юридическое сопровождение и запуск отеля). По факту реальная стоимость для инвестора на 150 000 ₽ выгоднее, чем у проектов, где эти платежи берут отдельно.",
-    "first_year_roi_summary": "За первый год по сценарию с точкой входа 5,766 млн ₽ и ежемесячными платежами вы можете выйти на доходность порядка 70% годовых и полностью окупить вложения примерно за 4 года.",
-    "guaranteed_income": "Работает «котловая система»: доход всего отеля суммируется и распределяется между собственниками. Условия о гарантированных выплатах фиксируются в договоре с Управляющей Компанией."
+    "included_fees_note": "В стоимость апартамента уже входят: 50 000 ₽ за бронь и 100 000 ₽ за договор с ООО «Ризалта» (юридическое сопровождение и запуск отеля).",
+    "first_year_roi_summary": "За первый год по сценарию с точкой входа 5,766 млн ₽ и ежемесячными платежами вы можете выйти на доходность порядка 70% годовых.",
+    "guaranteed_income": "Работает «котловая система»: доход всего отеля суммируется и распределяется между собственниками."
   }
 }
