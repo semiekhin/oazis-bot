@@ -291,8 +291,8 @@ async def handle_base_roi(chat_id: int, unit_code: Optional[str] = None):
         block = unit.get("block", "")
         
         # Капитализация
-        price_2027 = unit.get("price_2027") or 0
-        growth_pct = unit.get("growth_to_2027_pct") or 0
+        price_2027 = unit.get("price_2027") or unit.get("price_cap_year1") or 0
+        growth_pct = unit.get("growth_to_2027_pct") or unit.get("growth_to_cap_pct") or 0
         
         # Fallback на capitalization_projection
         if not price_2027:
